@@ -8,6 +8,13 @@
  * \brief representant l'ensemble des resultat relut dans les fichier
  */
 
+struct typeErreur
+{
+	int maj;
+	int moy;
+	int min;
+
+};
 class Resultat
 {
     private:
@@ -15,6 +22,12 @@ class Resultat
     QStringList listRelecteur;
     ///List du nombre de relectuer range par personnes
     QList <int>  listTotalRelecture;
+	///List du nombre de temps passe en min
+	QList<int> listTotalTime;
+	///ListErreur
+	QList<typeErreur> listTotalErreur;
+	/// List Erreur corrigé
+	QList<typeErreur> listTotalCorrErreur;
 
 public:
     ///Constructeur
@@ -29,9 +42,15 @@ public:
     ///Ajout un relecteur à la liste
     void addRelecteur(QString relecteur);
     ///Retourne la position d'un relecte dans la liste
-    int getPositionReleteur(QString relecteur);
+	int getPositionRelecteur(QString relecteur);
     ///Ajout une fiche au total d'un relecteyr
-    void addFicheToRelecteur(int position);
+	void addFicheToRelecteur(int position);
+	QList<int> getListTotalTime() const;
+	void addTime(QString relecteur, int time);
+	QList<typeErreur> getListErreur() const;
+	QList<typeErreur> getListErreurCorr() const;
+	void addErreur(QString relecteur, typeErreur value);
+	void addErreurCorrige(QString relecteur, typeErreur value);
 };
 
 #endif // RESULTAT_H

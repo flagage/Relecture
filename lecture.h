@@ -3,6 +3,7 @@
 #include <QString>
 #include "xlsxdocument.h"
 #include <QDebug>
+#include "resultat.h"
 
 class Lecture
 {
@@ -11,7 +12,10 @@ private:
     QXlsx::Document xlsx;
 public:
     Lecture(QString fileName);
-    QString getRelecteur();
+	QString getRelecteur();
+	int getTime();
+	typeErreur getErreur();
+	typeErreur getErreurCorr();
 };
 
 #endif // LECTURE_H

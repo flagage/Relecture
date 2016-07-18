@@ -23,16 +23,25 @@ int main(int argc, char *argv[])
     {
     QString file=argv[1];
     file=file+"\\"+listFile.at(i);
-    qDebug()<<file;
     Lecture lecture(file);
-    result.addRelecteur(lecture.getRelecteur());
+	QString strRelecteur=lecture.getRelecteur();
+	result.addRelecteur(strRelecteur);
+	result.addTime(strRelecteur,lecture.getTime());
+	result.addErreur(strRelecteur,lecture.getErreur());
+	result.addErreurCorrige(strRelecteur,lecture.getErreurCorr());
     }
 
     QTextStream out(stdout);
     for(int i=0;i<result.getListRelecteur().count();i++)
     {
         out<<i<<result.getListRelecteur().at(i)<<" "
-        <<result.getListTotalRelecture().at(i)<<endl;
+		<<result.getListTotalRelecture().at(i)<< " "
+		<<result.getListTotalTime().at(i)<<" "
+		<<result.getListErreur().at(i).maj<<","<<result.getListErreur().at(i).moy<<","<<
+		  result.getListErreur().at(i).min<<" "
+		<<result.getListErreurCorr().at(i).maj<<","<<result.getListErreurCorr().at(i).moy<<","<<
+		  result.getListErreurCorr().at(i).min<<
+		  endl;
     }
 
     return a.exec();
